@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dress Changer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Dress Changer</h1>
+        <p class="subtitle">Upload images to change clothing using AI</p>
+
+        <div class="upload-section">
+            <div class="upload-box">
+                <h3>Person Image</h3>
+                <div class="image-preview" id="personPreview">
+                    <span class="placeholder-text">Click to upload</span>
+                </div>
+                <input type="file" id="personImage" accept="image/*" style="display: none;">
+                <button class="btn-upload" onclick="document.getElementById('personImage').click()">
+                    Choose Image
+                </button>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="upload-box">
+                <h3>Clothing Image</h3>
+                <div class="image-preview" id="costumePreview">
+                    <span class="placeholder-text">Click to upload</span>
+                </div>
+                <input type="file" id="costumeImage" accept="image/*" style="display: none;">
+                <button class="btn-upload" onclick="document.getElementById('costumeImage').click()">
+                    Choose Image
+                </button>
+            </div>
+        </div>
+
+        <button class="btn-generate" id="generateBtn" onclick="generateImage()">
+            <span id="btnText">Generate</span>
+            <span id="spinner" class="spinner" style="display: none;"></span>
+        </button>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h3>Result</h3>
+            <img id="resultImage" alt="Generated Result">
+            <button class="btn-download" id="downloadBtn" onclick="downloadImage()">
+                Download Image
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

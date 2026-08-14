@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Scraper + Virtual Try-On</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Decorative Elements -->
+        <div class="decorative-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>🇮🇳 Fashion Scraper + Virtual Try-On</h1>
+                <div class="header-decoration">✨</div>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="search">🔍 Search Products</button>
+            <button class="tab-button" data-tab="trending">🔥 Trending Products</button>
+            <button class="tab-button" data-tab="tryon">👗 Virtual Try-On</button>
+        </div>
+
+        <!-- Search Tab -->
+        <div id="searchTab" class="tab-panel active">
+            <div class="search-box">
+                <div class="search-input-group">
+                    <input type="text" id="searchInput" placeholder="Search for saree, kurta, lehenga, jeans..." class="search-input">
+                    <button id="searchBtn" class="search-button">Search</button>
+                </div>
+                <p class="search-hint">💡 Click on any product to try it on virtually!</p>
+            </div>
+            <div id="resultsSection" class="results-container">
+                <div class="empty-state">
+                    <h3>👋 Welcome!</h3>
+                    <p>Search for fashion items and click on them to try virtually</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Products Tab -->
+        <div id="trendingTab" class="tab-panel">
+            <div class="trending-container">
+                <div class="trending-header">
+                    <h2>🔥 Trending Fashion</h2>
+                    <p class="trending-subtitle">Recently searched fashion items from our community 🌍</p>
+                </div>
+                <div class="trending-search-box">
+                    <div class="trending-search-group">
+                        <input type="text" id="trendingSearchInput" placeholder="Search trending fashion (e.g., summer dress, jeans, kurta)..." class="trending-search-input">
+                        <button id="trendingSearchBtn" class="trending-search-button">🔍 Search</button>
+                        <button id="showAllTrending" class="show-all-button">🔄 Refresh</button>
+                    </div>
+                </div>
+                <div class="trending-filters">
+                    <select id="trendingCategory" class="trending-select">
+                        <option value="">All Categories</option>
+                    </select>
+                    <button id="refreshTrending" class="refresh-button">🔄 Refresh</button>
+                </div>
+                <div id="trendingSection" class="trending-results">
+                    <div class="loading-state">
+                        <div class="spinner-large"></div>
+                        <h3>Loading trending products...</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Try-On Tab -->
+        <div id="tryonTab" class="tab-panel">
+            <div class="tryon-container">
+                <div id="errorMessage" class="error-box" style="display: none;"></div>
+                
+                <div class="upload-area">
+                    <div class="upload-box" id="personPreview">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">👤</div>
+                            <h3>Upload Your Photo</h3>
+                            <p>Click to select image</p>
+                        </div>
+                    </div>
+                    <div class="upload-box" id="costumePreview">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">👗</div>
+                            <h3>Select Costume</h3>
+                            <p>Click product from search or upload</p>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="file" id="personImage" accept="image/*" style="display: none;">
+                <input type="file" id="costumeImage" accept="image/*" style="display: none;">
+
+                <button id="generateBtn" class="generate-button">
+                    <span id="btnText">✨ Generate Virtual Try-On</span>
+                    <span id="spinner" class="spinner" style="display: none;"></span>
+                </button>
+
+                <div id="resultSection" class="result-display" style="display: none;">
+                    <h3>🎉 Your Virtual Try-On Result</h3>
+                    <img id="resultImage" alt="Result">
+                    <button class="download-button" onclick="downloadImage()">💾 Download Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
